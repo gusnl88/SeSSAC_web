@@ -1,0 +1,73 @@
+.square{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-color: blue;
+}
+
+.border{
+    background-color: yellow;
+    /* 굵기 모양 색깔 */
+    border: 3px solid red;
+    border-style: blue;
+    border-width: 3px;
+}
+.rounded{
+    background-color: yellowgreen;
+    border-radius: 80%;
+}
+.rounded2{
+    background-color: pink;
+    border-top-right-radius: 80%;
+}
+.rounded3{
+    background-color: blue;
+    border-bottom-left-radius: 80%;
+}
+
+.box-sizing{
+    padding: 20px;
+    border: 15px solid red;
+    background-color: orange;
+}
+.content-box{
+    box-sizing: content-box;/*width+border+padding*/
+}
+.border-box{
+    box-sizing: border-box;/*박스 사이즈 안에서 다 이루어짐*/
+}
+.d-none {
+    display: none;/* 숨김 자리 x속성x*/
+    background-color: red;
+}
+.d-none2{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+.d-none2:hover{
+    display: none;
+}
+.invisible {
+  visibility: hidden;/*사라지지만 자리는 차지*/
+  background-color: orangered;
+}
+
+.opacity-0 {
+  opacity: 0;/*사라지지만 속성,자리는 차지*/
+  background-color:tomato;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.overflow-auto{
+    overflow: auto;
+}
+.overflow-scroll{
+    overflow: scroll;
+}
+
+.overflow-visible{
+    overflow: visible;
+}

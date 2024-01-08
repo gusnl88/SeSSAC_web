@@ -1,0 +1,91 @@
+.container{
+    width: 1000px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: black;
+    display: flex;
+    /* flex-direction 정렬 방향(주축의 방향) 설정
+        -row:좌>우 정렬
+        -row-reverse: 우 > 좌 정렬
+        -colum: 상 > 하 정렬
+        -column-reverse: 하> 상 정렬
+    */
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+
+    /* flex-wrap */
+    /* flex-wrap: nowrap; */
+    /* flex-wrap: wrap; */
+
+    /* justify-content : 주축의 정렬 방법 */
+    /* justify-content: start; */
+    /* justify-content: center; */
+    /* justify-content: end; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+}
+
+.items{
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 100px;
+}
+.items1{
+    background-color: red;
+}
+.items2{
+    background-color: orange;
+}
+.items3{
+    background-color: yellow;
+}
+.items4{
+    background-color: yellowgreen;
+}
+.items5{
+    background-color: blue;
+}
+.container2{
+    width: 500px;
+    height: 500px;
+    background-color: skyblue;
+    display: flex;
+
+    /* flex-direction: row; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+    /* flex-direction: row-reverse; */
+
+    /* align-items: stretch; */
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+    /* align-items: center; */
+    flex-wrap: wrap;
+    /* align-content: flex-start; */
+    /* align-content: flex-end; */
+    /* align-content: center; */
+    /* align-content: space-around; */
+    /* align-content: space-between; */
+    /* align-content: space-evenly; */
+}
+.item{
+    text-align: center;
+    line-height: 100px;
+    width: 100px;
+    height: 100px;
+}
+.item1{
+    background-color: red;
+}
+
+.item2{
+    background-color: blue;
+}
+.item3{
+    background-color: pink;
+}
