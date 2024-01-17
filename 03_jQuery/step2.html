@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <ul>
+        <li>orange</li>
+        <li class="green">green</li>
+        <li>navy</li>
+    </ul>
+    <button onclick="appendJs()">append js</button>
+    <button onclick="appendJquery()">append jQuery</button>
+
+    <button onclick="prependJs()">prepend js</button>
+    <button onclick="prependJquery()">prepend jquery</button>
+
+    <button onclick="beforeJs()">before js</button>
+    <button onclick="beforeJquery()">before jquery</button>
+
+    <div>
+        <ul class="nums">
+            <li>1</li>
+            <li id="li2">2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <button onclick="removeJs()">removeJs</button>
+    <button onclick="removeJquery()">removeJquery</button>
+    <button onclick="emptyJs()">emptyJs</button>
+    <button onclick="emptyJquery()">emptyJquery</button>
+<br><br><br><br><br><br><br><br><br><br>
+    <button onclick="findParent()">findParent</button>
+    <button onclick="findParents()">findParents</button>
+    <button onclick="findNext()">findNext</button>
+    <button onclick="findPrev()">findPrev</button>
+    <button onclick="findChildren()">findChildren</button>
+    <script>
+        function findParent(){
+            console.log($('#li2').parent());
+        }
+        function findParents(){
+            console.log($('#li2').parents());
+
+        }
+        function findNext(){
+            console.log($('#li2').next());
+
+        }
+        function findPrev(){
+            console.log($('#li2').prev());
+
+        }
+        function findChildren(){
+            console.log($('.nums').children());
+
+        }
+        function emptyJs(){
+            let nums=document.querySelector('.nums');
+            nums.innerHTML='';
+        }
+        function emptyJquery(){
+            $('.nums').empty();
+        }
+        function removeJs(){
+            let li=document.querySelector('#li2');
+
+            li.remove();
+        }
+        function removeJquery(){
+            $('#li2').remove();
+        }
+        function appendJs(){
+            let ul=document.querySelector('ul');
+            let li=document.createElement('li')
+            li.textContent='redJs';
+            ul.append(li)
+        }
+        let a=0
+        function appendJquery(){
+            $('ul').append(`<li>redJquery${a}</li>`)
+            a++;
+        }
+        function prependJs(){
+            let ul=document.querySelector('ul');
+            let li=document.createElement('li')
+            li.textContent='prependJs';
+            ul.prepend(li)
+        }
+        function prependJquery(){
+            $('ul').prepend(`<li>redJquery${a}</li>`)
+            a++;
+        }
+        function beforeJs(){
+            let green=document.querySelector('.green');
+            let li=document.createElement('li')
+            li.textContent='beforeJs';
+            green.before(li)
+        }
+        function beforeJquery(){
+            $('.green').before(`<li>redJquery${a}</li>`)
+            a++;
+
+        }
+    </script>
+</body>
+</html>

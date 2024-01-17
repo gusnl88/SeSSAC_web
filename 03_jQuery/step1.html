@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <input type="text">
+    <button onclick="setValue()">set</button>
+    <button onclick="getValue()">get</button>
+    <br>
+    <span>안녕</span>
+    <button onclick="changePlus()">changePlus</button>
+    <button onclick="changeMinus()">changeMinus</button>
+    <button onclick="changeAtriibutte()">changeAtriibutte</button>
+
+    <p class="pT">p태그</p>
+    <button onclick="changeText()">changeText</button>
+    <button onclick="changeHtml()">changeHtml</button>
+    <button onclick="append()">append</button>
+    <script>
+        let a=10;
+        function setValue(){
+            $('input').val('세팅')
+        }
+        function getValue(){
+            alert($('input').val())
+        }
+        function changePlus(){
+            a+=10;
+            $('span').css('font-size',`${a}px`)
+        }
+        function changeMinus(){
+            a-=10;
+            $('span').css('font-size',`${a}px`)
+        }
+
+        function changeAtriibutte(){
+           
+            $('input').attr("placeholder","name")
+        }
+
+        function changeHtml(){
+            $('p').html('<h3>jQuery html</h3>')
+        }
+
+        function changeText(){
+            $('p').text('jQuery html')
+        }
+        function append(){
+            $('.pT').append('<p>ddddddddddddd</p>')
+        }
+    </script>
+</body>
+</html>
