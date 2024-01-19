@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script    src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>  
+          <!-- TODO1: jQuery CDN 불러오기 -->
+          <style>
+            div {
+              width: 100px;
+              height: 100px;
+            }
+      
+            div:hover {
+              cursor: pointer;
+            }
+      
+            .red {
+              background-color: red;
+            }
+      
+            .orange {
+              background-color: orange;
+            }
+      
+            .yellow {
+              background-color: yellow;
+            }
+      
+            .green {
+              background-color: green;
+            }
+      
+            .blue {
+              background-color: blue;
+            }
+      
+            .purple {
+              background-color: purple;
+            }
+          </style>
+        </head>
+      
+        <body>
+          <div class="red" onclick="changeColor();"></div>
+        </body>
+          <script>
+            let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+            // TODO2: changeColor 함수 내부 작성
+            function changeColor() {
+                let nowClass=$('div').attr("class");
+                let random=Math.floor(Math.random() *colors.length)
+                if($('div').hasClass(`${colors[random]}`)){
+                    changeColor();
+                    return;
+                }
+                $('div').switchClass(nowClass,`${colors[random]}`)
+            }
+          </script>
+      </html>

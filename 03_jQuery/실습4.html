@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <style>
+    body{
+        display: flex;
+    }
+    div{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border-radius: 10%;
+        background-color: black;
+
+        border: 1px solid black;
+    }
+    @media screen and (max-width:700px) {
+        body{
+            display: block;
+        }
+        div{
+        background-color: skyblue;
+
+        }
+    }
+</style> -->
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        border: 5px solid black;
+    }
+    /*  ~부터 ~ 까지 범위 작성 */
+    /* @media (min-width:300px) and (max-width:600px) { */
+        @media (300px <= width<=600px) {
+            
+        .more-and-less{
+            background-color: purple;
+        }
+    }
+    /* 가로,세로 모드 */
+    @media (orientation:landscape) {
+        .more-and-less{
+            background-color: red;
+        }
+    }
+    @media (orientation:portrait) {
+        .more-and-less{
+            background-color: gold;
+        }
+    }
+</style>
+<body>
+    <div class="more-and-less">more-end-less</div>
+
+</body>
+</html>

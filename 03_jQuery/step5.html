@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    @media screen and (min-width:500px) {
+        body{
+            background-color: skyblue;
+        }
+    }
+    @media screen and (max-width:300px) {
+        body{
+            background-color: orange;
+        }
+    }
+</style>
+<body>
+    <p>미디어 쿼리 실습</p>
+</body>
+<script>
+window.addEventListener('resize', function() {
+
+        let width=window.innerWidth;
+        if(width>500){
+            document.querySelector('p').innerText='가로500이상'
+        }else if(width<300){
+            document.querySelector('p').innerText='가로300이하'
+
+        }else{
+            document.querySelector('p').innerText='가로300이상500이하'
+
+        }
+    })
+</script>
+</html>
