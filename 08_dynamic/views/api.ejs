@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>외부 API 사용</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        img{
+            height: 500px;
+        }
+        ul{
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+        }
+        ul p{
+            width: 200px;
+        }
+        ul img{
+            margin: 1rem;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>간단 open API 사용</h1>
+
+    <h3>고양이 사진 바꾸기</h3>
+    <img src="" alt="기본이미지" id="img">
+    <br>
+    <button type="button" onclick="changeCatImg()">고양이 사진 변경</button>
+
+    <h3>영화 정보 가져오기 (axios)</h3>
+    <button value="comedy">코미디</button>
+    <button>히어로</button>
+    <button>액션</button>
+    <button>호러</button>
+    <ul>
+
+    </ul>
+    
+
+
+    <script>
+        function changeCatImg(){
+            fetch("https://api.thecatapi.com/v1/images/search")
+            .then((res)=>{
+                return res.json(); //or (res)=>res.json() 사용가능
+            }).then((res)=>{
+                console.log(res)
+                const img= document.getElementById("img");
+                img.src=res[0].url
+                img.alt=`${res[0].id}-cat`
+            })
+        }
+    
+       // http://www.omdbapi.com/?apikey=[b6bb5e2a]&
+
+       const word="action";
+       const button=document.querySelectorAll("button");
+       button.forEach((btn)=>{
+ btn.addEventListener("click",(res)=>{
+            console.log(res.target.value)
+        })
+       })
+       
+   
+
+       axios({
+        method:"get",
+        url:"http://www.omdbapi.com/?apikey=b6bb5e2a&s="+word,
+
+       }).then((res)=>{
+        console.log(res.data)
+        console.log(res.data.Search)
+        console.log(res.data.Search[0])
+        const url= document.querySelector("ul")
+        for(let move of res.data.Search){
+            const div=document.createElement("div")
+            const img=document.createElement("img")
+            const p=document.createElement("p")
+
+            img.src=move.Poster;
+            img.alt=move.imdbID;
+            p.innerText=move.Title;
+
+            div.append(img,p);
+            url.append(div);
+        }
+       }).catch((err)=>{
+        console.log(err)
+       })
+
+    </script>
+</body>
+</html>
