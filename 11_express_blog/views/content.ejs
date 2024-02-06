@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%-include('./include/head')%>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">글번호: <%=contentId%></h5>
+                        <h4 class="card-title">글제목: <%=title%></h4>
+                        <p class="card-text">내용: <%=content%></p>
+                        <% if(img!=null){ %>
+                            <img src="/<%=img%>" alt="<%=contentId%>번 글 이미지" class="img-fluid" width="100%">
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

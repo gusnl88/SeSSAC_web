@@ -1,0 +1,12 @@
+img{
+    width: 200px;
+    height: 400px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.content{
+            text-align: center;
+
+}

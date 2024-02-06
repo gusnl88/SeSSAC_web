@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <%-include('./include/head')%>
+  </head>
+  <body>
+       <%-include('./include/header')%>
+    <div class="container mt-4">
+      <h2>안녕하세요 ! <%=user%>의 블로그 입니다.</h2>
+      <ul class="list-group">
+        <% for(let content of contentData) { %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="/content/<%= content.contentId %>"><%= content.title %></a>
+            <button class="btn btn-danger" onclick="deleteContent('<%=content.contentId%>',this)">삭제</button>
+          </li>
+        <% } %>
+      </ul>
+      <div class="d-flex justify-content-end p-5">
+
+        <a href="/write" class="btn btn-primary">글쓰기</a>
+      </div>
+    </div>
+
+
+    <script>
+      async function deleteContent(contentId,btn) {
+        console.log(btn)
+        // 삭제 로직을 여기에 추가
+        if(confirm("정말 삭제 하시겠습니까?")){
+
+          const a=await axios({
+            method:'delete',
+            url:'/blog/delete?contentId='+contentId,
+          })
+          location.reload();
+
+          
+        }
+      }
+    </script>
+  </body>
+</html>

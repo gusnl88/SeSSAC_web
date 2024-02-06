@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>파일 업로드</h1>
+    <form action="/signup" method="post" enctype="multipart/form-data">
+
+        <label for="uId">아이디:<input type="text" name="uId" id="uId" ></label><br>
+        <label for="pw">비밀번호:<input type="text" name="pw" id="pw" ></label><br>
+        <label for="name">이름:<input type="text" name="name" id="name" ></label><br>
+        <label for="age">나이:<input type="text" name="age" id="age" ></label><br>
+        <label for="file">프로필사진:<input type="file" name="file" id="file" ></label><br>
+        <button type="reset">리셋</button>
+        <button>회원가입</button>
+    </form>
+</body>
+</html>
