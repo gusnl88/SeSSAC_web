@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>메인페이지</h1>
+    <form action="" name="formList">
+      <label for="id">아이디:<input type="text" id="id" /></label><br />
+      <label for="pw">비밀번호:<input type="text" id="pw" /></label><br />
+      <button type="reset">리셋</button>
+    </form>
+    <button onclick="signup()">로그인</button>
+    <div class="result"></div>
+    <script>
+      const result = document.querySelector(".result");
+
+      async function signup(event) {
+        const form = document.querySelector("form[name='formList']");
+        const data = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+
+        try {
+          const res = await axios({
+            method: "post",
+            url: "/signup",
+            data: data,
+          });
+          if(res.data.id != null){
+                      result.innerText =`${res.data.id}님 환영합니다.`;
+
+          }else{
+
+              result.innerText = res.data.message;
+          }
+        } catch (error) {
+          console.error(error);
+          result.textContent = "로그인 요청 중 오류가 발생했습니다.";
+        }
+      }
+    </script>
+  </body>
+</html>
