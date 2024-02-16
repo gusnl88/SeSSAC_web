@@ -11,4 +11,6 @@ router.get("/visitor/:id", controller.getVisitorById);
 router.post("/visitors",controller.postVisitor);
 router.delete("/visitors", controller.deleteVisitor);
 router.patch("/visitors", controller.patchVisitor);
+
+
 module.exports=router;

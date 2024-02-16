@@ -27,3 +27,5 @@ GRANT ALL PRIVILEGES on *.* TO 'sessac'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 --db에서 사용하고있던 캐시를 제거.
 --현재 사용중인 mysql 캐시를 지우고 새로운 설정 적용
+
+select * from user
