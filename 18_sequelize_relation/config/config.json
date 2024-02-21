@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "root",
+    "password": "mysql123",
+    "database": "sessac",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+  },
+  "production": {
+  }
+}
