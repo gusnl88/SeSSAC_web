@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+    <!-- axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>JWT</h1>
+    <div id="info"></div>
+    <script>
+      (function () {
+        console.log("즉시실행함수");
+        console.log("즉시 실행 익명 함수");
+      })();
+      ((a) => {
+        {
+          console.log("화살표 함수도 가능");
+          console.log(a);
+        }
+      })(1);
+
+      (function text(t) {
+        console.log(t);
+      })("'안녕'");
+
+      /* 
+      왜 사용하나요?
+      1. 전역변수 사용을 피하기 위해서 사용
+      (전역 변수는 다른 코드에 영향을 미칠 수 있어 피하는게 좋습니다.)
+
+      2. 라이브러리 내의 전역변수 충돌을 피할 수 있음
+      */
+
+      (async function () {
+        const info = document.getElementById("info");
+        const token = localStorage.getItem("login");
+
+        console.log(token);
+        console.log(info);
+
+        let data = "";
+        if (!token) {
+          // 로그인이 안된 상태
+          // localStorage.getItem 이 없다면, 로그인이  안된 상태
+          data = '<a href="/login"> 로그인</a>';
+        } else {
+          // 로그인이 되었을때
+          // localStorage.getItem 이 있다면, 로그인된 상태
+          const res = await axios({
+            method: "post",
+            url: "/token",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(res.data);
+          // {result:false,message:''} or
+          // {result: true,name:아이디}
+
+          if (res.data.result) {
+            data = `
+          <p>${res.data.name}님 환영합니다.</p>
+          <button onclick='logout()'>로그아웃</button>
+          `;
+          }
+        }
+        info.innerHTML = data;
+      })();
+
+      function logout() {
+        localStorage.clear();
+
+        document.location.reload();
+      }
+    </script>
+  </body>
+</html>
