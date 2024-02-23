@@ -33,15 +33,7 @@ app.use(session(sessionConfig));
 db.sequelize.sync({focus:false}).then((result)=>{
     console.log('db연결 성공')
 })
-app.get("/", router);
-
-app.get('/signup',router)
-
-app.get('/signin',router)
-
-app.post('/signup',router)
-
-app.post('/signin',router)
+app.use("/", router);
 
 app.listen(PORT, (req, res) => {
   console.log(`http://101.101.219.191:${PORT}`);

@@ -8,4 +8,4 @@ insert into `user` (name,pw,createdAt,updatedAt) VALUES('도우넛','12345',NOW(
 
 SELECT * from user
 
-DROP Table `user`
+-- DROP Table `user`
