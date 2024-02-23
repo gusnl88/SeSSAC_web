@@ -69,4 +69,5 @@ app.post("/token", (req, res) => {
 });
 app.listen(PORT, (req, res) => {
   console.log(`welcome to my ${PORT}`);
+  console.log(`http://101.101.219.191:8080/${PORT}`)
 });
