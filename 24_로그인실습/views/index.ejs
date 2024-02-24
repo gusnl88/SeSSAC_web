@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인페이지</title>
-</head>
-<body>
-    <h1>로그인페이지</h1>
-    <a href="/signin">로그인페이지로가기</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인페이지</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>메인페이지</h1>
+    <% if (user) { %>
+    <p><%= user %>님 환영합니다 !</p><button onclick="logout()">(로그아웃)</button>
+    <% } else { %>
+    <a id="sign" href="/signin">로그인페이지로가기</a>
+    <% } %>
     <a href="/userList">유저정보 리스트</a>
-</body>
+    <script>
+        async function logout(){
+            const res=await axios({
+                method:'get',
+                url:'/logout'
+            })
+            const {result}=res.data;
+            if(result){
+                alert('로그아웃 되었습니다.')
+                document.location.href='/'
+            }
+        }
+    </script>
+  </body>
 </html>

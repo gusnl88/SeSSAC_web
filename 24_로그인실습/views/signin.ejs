@@ -22,9 +22,7 @@
       폼(input)이 보이지 않도록 hidden 처리함
     -->
     <a href="/">HOME</a>
-    <form name="form_info" action="/" method="get">
-      <input type="hidden" name="userid" />
-    </form>
+
 
     <form name="form_login">
       <h1>로그인</h1>
@@ -61,12 +59,14 @@
 
         const { result } = res.data;
         console.log(result);
+        
         if (result) {
           alert("로그인 성공!");
-          console.log(formInfo.userid.value, form.userid.value);
-          formInfo.userid.value = form.userid.value;
-          formInfo.submit();
-        } else {
+          document.location.href='/'
+        } else if(result==='중복') {
+          alert("이미 사용중인 아이디 입니다.");
+        }
+         else {
           alert("아이디 비밀번호가 다릅니다.");
           form.reset();
         }

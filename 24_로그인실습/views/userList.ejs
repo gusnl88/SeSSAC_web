@@ -35,15 +35,15 @@
   </head>
   <body>
     <a href="/">HOME</a>
-    <h1>User List</h1>
+    <h1>유저리스트</h1>
     <table>
       <thead>
         <tr>
-          <th>User ID</th>
-          <th>Name</th>
-          <th>Password</th>
-          <th>Created At</th>
-          <th>Updated At</th>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>비밀번호</th>
+          <th>생성일</th>
+          <th>수정일</th>
         </tr>
       </thead>
       <tbody>
@@ -52,8 +52,8 @@
           <td><%= user.userid %></td>
           <td><%= user.name %></td>
           <td><%= user.pw %></td>
-          <td><%= user.createdAt %></td>
-          <td><%= user.updatedAt %></td>
+          <td><%= new Date(user.createdAt).toLocaleString('ko-KR', { hour12: false }) %></td>
+          <td><%= new Date(user.updatedAt).toLocaleString('ko-KR', { hour12: false }) %></td>          
         </tr>
         <% }); %>
       </tbody>

@@ -1,5 +1,4 @@
 const { User } = require("../models");
-const session = require("express-session");
 const bcrypt = require("bcrypt");
 const salt = 10;
 function hashPw(pw) {
@@ -9,7 +8,7 @@ function comparePw(inputPw, hashedPw) {
   return bcrypt.compareSync(inputPw, hashedPw);
 }
 exports.main = (req, res) => {
-  res.render("index");
+  res.render("index", { user: req.session.name });
 };
 
 exports.signup = (req, res) => {
@@ -18,22 +17,47 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   res.render("signin");
 };
-
-exports.userList=async(req,res)=>{
-  const userList=await User.findAll()
-  console.log(userList)
-  
-  res.render('userList',{userList:userList})
-}
-exports.postSignup = (req, res) => {
-  const userPw = hashPw(req.body.pw);
-  User.create({
-    userid: req.body.userid,
-    pw: userPw,
-    name: req.body.name,
-  }).then((result) => {
-    res.end();
+exports.logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).send("에러입니다.");
+      throw err;
+    }
   });
+  res.send({result:true})
+};
+exports.userList = async (req, res) => {
+  try {
+    const userList = await User.findAll();
+    res.render("userList", { userList: userList });
+  } catch (error) {
+    console.log("userList err:", error);
+    res.status(500).send("server err");
+  }
+};
+exports.postSignup = async (req, res) => {
+  try {
+    const userPw = hashPw(req.body.pw);
+    const existingUser = await User.findOne({
+      where: { userid: req.body.userid },
+    });
+
+    if (existingUser) {
+      // 이미 존재하는 사용자 ID인 경우
+      res.send({ result: false });
+    } else {
+      // 새로운 사용자를 생성
+      await User.create({
+        userid: req.body.userid,
+        pw: userPw,
+        name: req.body.name,
+      });
+      res.send({ result: true });
+    }
+  } catch (error) {
+    console.log("postSignup err :", error);
+    res.status(500).send("server err");
+  }
 };
 
 exports.postSignin = async (req, res) => {
@@ -45,16 +69,17 @@ exports.postSignin = async (req, res) => {
     if (userfindOne) {
       const user = comparePw(req.body.pw, userfindOne.pw);
       if (user) {
-        req.session.name = "loginUser";
+        console.log("진입");
+        req.session.name = userfindOne.name;
         res.send({ result: true });
       } else {
         res.send({ result: false });
       }
-    }else{
-      res.send({result:false})
+    } else {
+      res.send({ result: false });
     }
   } catch (error) {
+    console.log("postSignin err :", error);
     res.status(500).send("server err");
-    throw error;
   }
 };
