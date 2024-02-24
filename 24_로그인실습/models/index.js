@@ -3,7 +3,7 @@
 
 const Sequelize = require('sequelize');
 
-const config = require(__dirname + '/../config/config.json')["development"];
+const config = require(__dirname + '/../config/config.json')["development-database"];//로컬시 development-local
 
 const db = {};
 
