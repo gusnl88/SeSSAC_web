@@ -12,5 +12,9 @@ router.get("/userList", controller.userList);
 router.post("/signup", controller.postSignup);
 router.post("/signin", controller.postSignin);
 // router.get('/sigin',controller.sigin)
+router.get("/reservation", controller.getReservation);
+router.post("/reservation", controller.postReservation);
 
+router.get('/editer',controller.editer)
+router.post('/editer',controller.postEditer)
 module.exports = router;

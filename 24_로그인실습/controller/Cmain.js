@@ -1,5 +1,7 @@
+const sequelize = require("../db/db");
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
+const fs = require('fs');
 const salt = 10;
 function hashPw(pw) {
   return bcrypt.hashSync(pw, salt);
@@ -24,11 +26,13 @@ exports.logout = (req, res) => {
       throw err;
     }
   });
-  res.send({result:true})
+  res.send({ result: true });
 };
 exports.userList = async (req, res) => {
   try {
-    const userList = await User.findAll();
+    const userList = await sequelize.query("SELECT * FROM User", {
+      type: sequelize.QueryTypes.SELECT,
+    });
     res.render("userList", { userList: userList });
   } catch (error) {
     console.log("userList err:", error);
@@ -83,3 +87,54 @@ exports.postSignin = async (req, res) => {
     res.status(500).send("server err");
   }
 };
+
+
+exports.getReservation=(req,res)=>{
+  res.render('reservation')
+}
+
+exports.postReservation=async(req,res)=>{
+  console.log(req.body)
+  const{day,st_room}=req.body;
+  let rev=[];
+  for(let i=0;i<10;i++){
+    const reservation = await sequelize.query(`select (u_id) from Reservation where day='${day}' and st_room='${st_room}' and time='${i+1}';`, {
+      type: sequelize.QueryTypes.SELECT,
+    });
+    if(reservation!=""){
+      rev.push(i + 1);
+    }
+  }
+  console.log(rev)
+  res.send({resevation:rev})
+}
+
+exports.editer=(req,res)=>{
+  res.render('editer')
+}
+const path = require('path');
+
+
+const directory = '../uploads';
+
+exports.postEditer=(req,res)=>{
+  const { image } = req.body;
+  console.log(req.body)
+  console.log(image.length)
+  for (let i = 0; i < image.length; i++) {
+    const randomNumber = Math.floor(1000000 + Math.random() * 9000000);
+
+// 파일 이름 생성
+const filename = `${randomNumber}.jpg`;
+
+const filePath = path.join(__dirname, directory, filename);
+      const decodedImageData = Buffer.from(image[i], 'base64');
+      console.log('복호화',decodedImageData)
+      fs.writeFile(filePath, decodedImageData, (err) => {
+      if (err) throw err;
+      console.log('이미지가 성공적으로 저장되었습니다.');
+    });
+  }
+  res.end()
+  
+}

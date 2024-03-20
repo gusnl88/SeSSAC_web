@@ -30,9 +30,8 @@ app.get("/", (req, res) => {
     */
   // TODO:user session불러오는 부분
   // user가 로그인됐는지 안됐는지 검사하는 부분
-    console.log(req.session.name)
+  console.log(req.session.name);
   res.render("index", { user: req.session.name });
-
 });
 
 app.get("/login", (req, res) => {
@@ -52,13 +51,13 @@ app.post("/login", (req, res) => {
 });
 // TODO: 로그아웃 기능
 app.get("/logout", (req, res) => {
-    req.session.destroy((err)=>{
-        if(err){
-            res.status(500).send('에러입니다.')
-            throw err;
-        }
-    })
-    res.redirect('/')
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500).send("에러입니다.");
+      throw err;
+    }
+  });
+  res.redirect("/");
   //로그아웃 진행
   //메인 페이지 렌더 (redirect)
 });

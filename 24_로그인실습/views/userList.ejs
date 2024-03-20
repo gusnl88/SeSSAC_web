@@ -49,7 +49,7 @@
       <tbody>
         <% userList.forEach(user => { %>
         <tr>
-          <td><%= user.userid %></td>
+          <td><%= user.u_id %></td>
           <td><%= user.name %></td>
           <td><%= user.pw %></td>
           <td><%= new Date(user.createdAt).toLocaleString('ko-KR', { hour12: false }) %></td>

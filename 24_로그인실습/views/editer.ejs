@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summernote 사용 예제</title>
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  </head>
+  <body>
+      <form name="edit-form" enctype="multipart/form-data">
+        <input type="text" placeholder="제목" id="title">
+        <textarea id="summernote"></textarea>
+
+    </form>
+    <button onclick="editClick()">클릭</button>
+
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote();
+      });
+      async function editClick(){
+        const form=document.forms['edit-form']
+        
+        const data=form.summernote.value
+        const imageDataArray = [];
+
+        // 이미지 데이터 추출을 위한 정규식
+        const regex = /<img\s+src="data:image\/[^;]+;base64,([^"]+)"/g;
+        
+        let match=[];
+        while ((match = regex.exec(data)) !== null) {
+            // match[1]에는 이미지 데이터가 포함된 부분이 들어 있습니다.
+            const imageData = match[1];
+            imageDataArray.push(imageData);
+        }
+
+        console.log(imageDataArray);
+
+        const res=await axios({
+            method:'post',
+            url:'/editer',
+            data:{image:imageDataArray}
+        })
+      }
+    </script>
+  </body>
+</html>

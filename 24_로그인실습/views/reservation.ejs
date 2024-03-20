@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>예약정보</h1>
+    <form name="rv-form">
+      <input type="text" id="day" value="1" placeholder="1" />
+      <input type="text" id="st_room" value="1" placeholder="1" />
+      <!-- <input type="text" id="time" placeholder="시간대를(1~10) 입력"> -->
+      <!-- <input type="text" id="count" placeholder="사용인원을 입력"> -->
+    </form>
+    <button onclick="reservation()">클릭</button
+    ><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    
+
+    <script>
+        let isTimeAdded=false;
+      async function reservation() {
+        const form = document.forms["rv-form"];
+    
+    // time이 추가되지 않았을 때만 추가
+    if (!isTimeAdded) {
+        const time = `<label for="time1"><input type="checkbox" id="time1" />10시</label>
+        <label for="time2"><input type="checkbox" id="time2" />11시</label>
+        <label for="time3"><input type="checkbox" id="time3" />12시</label>
+        <label for="time4"><input type="checkbox" id="time4" />13시</label>
+        <label for="time5"><input type="checkbox" id="time5" />14시</label>
+        <label for="time6"><input type="checkbox" id="time6" />15시</label>
+        <label for="time7"><input type="checkbox" id="time7" />16시</label>
+        <label for="time8"><input type="checkbox" id="time8" />17시</label>
+        <label for="time9"><input type="checkbox" id="time9" />18시</label>
+        <label for="time10"><input type="checkbox" id="time10" />19시</label>`;
+
+        form.insertAdjacentHTML('beforeend', time);
+        isTimeAdded = true; // time이 추가되었음을 표시
+    }
+        console.log("시작");
+        const res = await axios({
+          method: "post",
+          url: "/reservation",
+          data: {
+            day: form.day.value,
+            st_room: form.st_room.value,
+          },
+        });
+        console.log(res.data);
+        const reservations = res.data.resevation;
+        for (const item of reservations) {
+          console.log(item);
+          // 여기서 item은 배열 rev에 들어있는 각 값입니다.
+          const checkbox = document.querySelector(`#time${item}`);
+    if (checkbox) {
+      checkbox.disabled = true;
+    }
+        }
+      }
+    </script>
+  </body>
+</html>
