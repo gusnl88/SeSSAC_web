@@ -1,0 +1,46 @@
+main {
+  .ListContainer {
+    button {
+      background-color: #ff9999;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px; /* 완료 취소 버튼에 대한 스타일 */
+      color: white;
+      font-weight: bold;
+      transition: background-color 0.3s ease; /* 버튼에 호버 효과를 추가합니다. */
+    }
+    button:hover {
+      background-color: #ff6666; /* 호버 시 배경색 변경 */
+    }
+    .TodoList {
+      border: 2px dashed papayawhip;
+      color: pink;
+    }
+    .DoneList {
+      width: 500px;
+      border: 2px dashed salmon; /* 완료된 작업 목록 컨테이너에 대한 스타일 */
+      color: coral;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      h2 {
+        margin-bottom: 10px; /* 완료된 작업 목록 제목에 대한 스타일 */
+      }
+      ul {
+        padding-left: 20px; /* 완료된 작업 목록 아이템 목록에 대한 스타일 */
+      }
+      li {
+        list-style-type: none; /* 완료된 작업 목록 아이템에 대한 스타일 */
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .doneTask {
+        flex-grow: 1;
+        text-decoration: line-through;
+      }
+    }
+  }
+}

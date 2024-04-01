@@ -1,16 +1,33 @@
-import { ClassProps, ClassProps2 } from "./components/ClassProps";
-import { FunctionProps, FunctionProps2 } from "./components/FunctionProps";
-import { Food } from "./components/Food";
-import { Book } from "./components/Book";
-import { TextClass } from "./components/TextClass";
-import { ClassState } from "./components/ClassState";
-import { FunctionState } from "./components/FunctionState";
-import PororoObj from "./components/MemberChange"
-import ClassComponent from"./components/ClassComponent"
+// import { ClassProps, ClassProps2 } from "./components/ClassProps";
+// import { FunctionProps, FunctionProps2 } from "./components/FunctionProps";
+// import { Food } from "./components/Food";
+// import { Book } from "./components/Book";
+// import { TextClass } from "./components/TextClass";
+// import { ClassState } from "./components/ClassState";
+// import { FunctionState } from "./components/FunctionState";
+// import PororoObj from "./components/MemberChange"
+
+import Alphabet from "./components/Alphabet";
+import MapStudy1 from "./components/MapStudy1";
+import MapStudy2 from "./components/MapStudy2";
+// import PropsMap from "./components/PropsMap";
+
+// import ClassComponent from"./components/ClassComponent"
 function App() {
+  const dataArray=[
+    {name:"peach",number:5,price:5000},
+    {name:"apple",number:10,price:7000},
+    {name:"banana",number:1,price:3000},
+    {name:"grape",number:2,price:8500},
+  ]
   return (
     <div className="App">
-      <h1>Hello, props</h1>
+            <h1>map과 filter 사용</h1>
+      {/* <PropsMap arr={dataArray}/> */}
+      {/* <Alphabet/> */}
+      {/* <MapStudy1/> */}
+      <MapStudy2/>
+      {/* <h1>Hello, props</h1>
       <ClassProps name="루피" color="pink" nickname="공주" />
       <ClassProps name="짱구" color="yellow" nickname="아기" />
       <ClassProps2
@@ -49,7 +66,8 @@ function App() {
       <br /><br /><br /><br /><br /><br /><br />
       <ClassComponent></ClassComponent>
       <br /><br /><br /><br /><br /><br /><br />
-      <PororoObj />
+      <PororoObj /> */}
+
     </div>
   );
 }

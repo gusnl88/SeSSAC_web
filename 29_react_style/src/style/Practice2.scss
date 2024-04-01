@@ -1,0 +1,31 @@
+@mixin animation(){
+    @keyframes moveLeft {
+        @for $item from 1 through 3{
+            100%{ transform: translateX(0); }
+            75%{ transform: translateX(#{$item*10}px);}
+            50%{ transform: translateX(#{$item*10}px) translateY(#{$item*-10}px);}
+            25% { transform: translateX(0) translateY(#{$item*-10}px); }
+            0%{transform: translateY(0) translateY(0);}
+        }
+    }
+}
+
+.practice2{
+        > div{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid black;
+            transition: transform 1s ease-in-out;
+            
+            @for $item from 1 through 3{
+                &:nth-child(#{$item}){
+            animation: moveLeft 2s infinite;
+            }
+        }
+    }
+}
+
+@mixin circle($circleColor,$circleOpacity){
+
+}
