@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ok">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io로 채팅만들기</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <ul></ul>
+    <form id="chat">
+      <input type="text" id="user" placeholder="이름" />
+      <input type="text" id="msg" placeholder="메세지" />
+      <button>채팅보내기</button>
+    </form>
+    <div id="btns">
+      <button id="hello">hello</button>
+      <button id="study">study</button>
+      <button id="bye">bye</button>
+    </div>
+    <div id="result"></div>
+    <script>
+      const socket = io(); //io()함수가 클라이언트의 소켓 생성 및 연결을 설정함.
+
+      //   const hello=document.getElementById('hello')
+      //   const study=document.getElementById('study')
+      //   const bye=document.getElementById('bye')
+      const buttons = document.querySelectorAll("#btns button");
+        const btns=document.getElementById('result')
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const buttonText = button.textContent;
+          console.log(buttonText);
+          socket.emit('clickBtn',buttonText)
+          // 버튼을 클릭했을 때 원하는 작업을 수행할 수 있습니다.
+        });
+      });
+
+      socket.on('responseMsg',(msg)=>{
+        // const p=document.createElement('p')
+        // p.textContent=msg
+        // btns.append(p)
+        btns.textContent=msg
+      })
+      /*
+        1.emit 에서 on으로 같은 이벤트 이름을 가진 곳으로 인자를 전달
+        2.on의 콜백에서 전달된 인자를 받아줍니다.
+        3.on의 콜백의 cb로 emit 에게 값을 전달
+        4.emit 에서는 마지막 매개변수인 콜백의 인자에 on이 전달한 값이 있다.
+      */
+      //   socket.emit("eventName", "hello", 10, { name: "doolli" }, (cb) => {
+      //     console.log(cb);
+      //   });
+
+      const chatForm = document.getElementById("chat");
+      const ul = document.querySelector("ul");
+      const name = document.getElementById("user");
+      const msg = document.getElementById("msg");
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const user = document.getElementById("user");
+        const msg = document.getElementById("msg");
+
+        const data = {
+          name: user.value,
+          msg: msg.value,
+        };
+        socket.emit("newMessage", data, (data) => {
+          const li = document.createElement("li");
+          li.innerText = `${data.name}: ${data.msg}`;
+          ul.append(li);
+        });
+        name.value = "";
+        msg.value = "";
+      });
+
+      socket.on("message_render", (data) => {
+        const li = document.createElement("li");
+        li.innerText = `${data.name}: ${data.msg}`;
+        ul.append(li);
+      });
+    </script>
+  </body>
+</html>
