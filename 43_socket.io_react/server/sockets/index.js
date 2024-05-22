@@ -36,7 +36,7 @@ function socketHandler(server) {
         io.emit("updateNicks", nickInfo);
       });
       socket.on("send", (data) => {
-        console.log(data)
+        console.log(data);
         const date = new Date();
 
         // AM 또는 PM 가져오기
@@ -49,28 +49,26 @@ function socketHandler(server) {
         console.log(myNick, dm, msg);
         if (dm === "all") {
           //전체일시
-          io.emit('message',{
-            id:myNick,
-            message:msg
-          })
+          io.emit("message", {
+            id: myNick,
+            message: msg,
+          });
         } else {
           //dm 일시
-        //  (1) io.to(soket.id).emit(~~~)
-        //특정 소켓아이디에게만 전달(나 포함 x)
-            io.to(dm).emit('message',{
-                id:myNick,
-                message:msg,
-                isDm:true
-            })
-        // (2)soket.emit(~~~~~~~)
-        //  나 에게만 메세지 보내기
-            socket.emit('message',{
-                id:myNick,
-                message:msg,
-                isDm:true
-            })
-
-            
+          //  (1) io.to(soket.id).emit(~~~)
+          //특정 소켓아이디에게만 전달(나 포함 x)
+          io.to(dm).emit("message", {
+            id: myNick,
+            message: msg,
+            isDm: true,
+          });
+          // (2)soket.emit(~~~~~~~)
+          //  나 에게만 메세지 보내기
+          socket.emit("message", {
+            id: myNick,
+            message: msg,
+            isDm: true,
+          });
         }
       });
     });
